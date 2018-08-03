@@ -9,10 +9,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RouteDto {
     private String airportFrom;
     private String airportTo;
-    private String connectingAirport;
 }

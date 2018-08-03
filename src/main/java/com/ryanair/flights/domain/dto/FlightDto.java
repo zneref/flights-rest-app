@@ -12,7 +12,6 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FlightDto {
     private int number;

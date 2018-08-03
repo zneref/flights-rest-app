@@ -11,13 +11,13 @@ import java.util.stream.Collectors;
 public class RouteMapper {
     public List<Route> mapToRoutes(final List<RouteDto> routesDto) {
         return routesDto.stream()
-                .map(routeDto -> new Route(routeDto.getAirportFrom(), routeDto.getAirportTo(), routeDto.getConnectingAirport()))
+                .map(routeDto -> new Route(routeDto.getAirportFrom(), routeDto.getAirportTo(), "NOT_SET"))
                 .collect(Collectors.toList());
     }
 
     public List<RouteDto> mapToRoutesDto(final List<Route> routes) {
         return routes.stream()
-                .map(route -> new RouteDto(route.getAirportFrom(), route.getAirportTo(), route.getOnnectingAirport()))
+                .map(route -> new RouteDto(route.getAirportFrom(), route.getAirportTo()))
                 .collect(Collectors.toList());
     }
 }

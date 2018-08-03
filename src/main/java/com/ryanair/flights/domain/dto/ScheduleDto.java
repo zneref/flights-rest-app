@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ScheduleDto {
     private int month;

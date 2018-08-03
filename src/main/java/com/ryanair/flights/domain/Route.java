@@ -8,5 +8,5 @@ import lombok.Getter;
 public class Route {
     private String airportFrom;
     private String airportTo;
-    private String onnectingAirport;
+    private String connectingAirport;
 }

@@ -26,8 +26,9 @@ public class FlightsController {
     ConnectionService connectionService;
 
     @GetMapping(value = "/routes")
-    public List<RouteDto> getRoutes() {
-        return routeService.fetchRoutes();
+    public List<RouteDto> getRoutes(@RequestParam("from") final String from,
+                                    @RequestParam("to") final String to) {
+        return routeService.fetchRoutes(from, to);
     }
 
     @GetMapping(value = "/schedules")
