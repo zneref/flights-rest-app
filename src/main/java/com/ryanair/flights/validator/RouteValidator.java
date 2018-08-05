@@ -15,17 +15,13 @@ public class RouteValidator {
         routesPredicates.add(route -> airportFrom.equalsIgnoreCase(route.getAirportFrom()));
         routesPredicates.add(route -> airportTo.equalsIgnoreCase(route.getAirportTo()));
         Predicate<Route> allFromOrTo = routesPredicates.stream().reduce(predicate -> false, Predicate::or);
- //       Predicate<Route> direct = routesPredicates.stream().reduce(predicate -> true, Predicate::and);
 
         List<Route> prefilteredRoutes = routes.stream()
                 .filter(allFromOrTo).collect(Collectors.toList());
 
-        List<Predicate<Route>> prefilteredRoutesPreds = new ArrayList<>();
- //       prefilteredRoutesPreds.add(direct);
-        prefilteredRoutesPreds.add(route -> prefilteredRoutes.stream()
+        Predicate<Route> directAndInterconnected = route -> prefilteredRoutes.stream()
                 .filter((anotherRoute -> route.getAirportTo().equalsIgnoreCase(anotherRoute.getAirportFrom())))
-                .count() == 1);
-        Predicate<Route> directAndInterconnected = prefilteredRoutesPreds.stream().reduce(predicate -> false, Predicate::or);
+                .count() == 1;
 
         return prefilteredRoutes.stream()
                 .filter(directAndInterconnected)
