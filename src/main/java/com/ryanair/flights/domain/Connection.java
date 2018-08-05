@@ -1,4 +1,4 @@
-package com.ryanair.flights.domain.dto;
+package com.ryanair.flights.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,8 +11,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ConnectionDto {
+public class Connection {
     private int stops;
-    private List<ConnectionDetailsDto> legs;
+    private List<ConnectionDetails> legs;
 
 }

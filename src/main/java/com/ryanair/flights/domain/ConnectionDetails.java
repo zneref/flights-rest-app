@@ -1,6 +1,5 @@
-package com.ryanair.flights.domain.dto;
+package com.ryanair.flights.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,11 +11,9 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ConnectionDetailsDto {
+public class ConnectionDetails {
     private String departureAirport;
     private String arrivalAirport;
-    @JsonFormat(pattern = "YYYY-MM-dd'T'HH:mm")
     private LocalDateTime departureDateTime;
-    @JsonFormat(pattern = "YYYY-MM-dd'T'HH:mm")
     private LocalDateTime arrivalDateTime;
 }

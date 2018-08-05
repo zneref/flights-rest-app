@@ -1,9 +1,9 @@
 package com.ryanair.flights.controller;
 
 
+import com.ryanair.flights.domain.Route;
+import com.ryanair.flights.domain.Schedule;
 import com.ryanair.flights.domain.dto.ConnectionDto;
-import com.ryanair.flights.domain.dto.RouteDto;
-import com.ryanair.flights.domain.dto.ScheduleDto;
 import com.ryanair.flights.service.ConnectionService;
 import com.ryanair.flights.service.RouteService;
 import com.ryanair.flights.service.ScheduleService;
@@ -26,14 +26,15 @@ public class FlightsController {
     ConnectionService connectionService;
 
     @GetMapping(value = "/routes")
-    public List<RouteDto> getRoutes(@RequestParam("from") final String from,
-                                    @RequestParam("to") final String to) {
-        return routeService.fetchRoutes(from, to);
+    public List<Route> getRoutes(@RequestParam("from") final String from,
+                                 @RequestParam("to") final String to) {
+        return routeService.fetchInterconnectedRoutes(from, to);
     }
 
     @GetMapping(value = "/schedules")
-    public ScheduleDto getSchedules() {
-        return scheduleService.fetchSchedules("DUB", "WRO", 2018, 8);
+    public Schedule getSchedules() {
+
+        return scheduleService.fetchSchedule("DUB", "WRO", 2018, 8);
     }
 
     @GetMapping(value = "/interconnections")
@@ -43,6 +44,7 @@ public class FlightsController {
                                           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) final LocalDateTime departureDateTime,
                                           @RequestParam("arrivalDateTime")
                                           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) final LocalDateTime arrivalDateTime) {
-        return connectionService.retrieveConnection(departure, arrival, departureDateTime, arrivalDateTime);
+
+        return connectionService.retrieveConnections(departure, arrival, departureDateTime, arrivalDateTime);
     }
 }

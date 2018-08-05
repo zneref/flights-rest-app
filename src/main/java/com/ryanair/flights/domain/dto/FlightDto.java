@@ -9,12 +9,12 @@ import lombok.Setter;
 
 import java.time.LocalTime;
 
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FlightDto {
-    private int number;
     @JsonFormat(pattern = "HH:mm")
     private LocalTime departureTime;
     @JsonFormat(pattern = "HH:mm")

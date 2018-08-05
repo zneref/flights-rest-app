@@ -31,6 +31,7 @@ configurations {
 dependencies {
     compile('org.projectlombok:lombok:1.16.20')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile group: 'org.modelmapper', name: 'modelmapper', version: '0.7.5'
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
