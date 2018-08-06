@@ -4,19 +4,17 @@ import com.ryanair.flights.apis.client.RouteClient;
 import com.ryanair.flights.domain.Route;
 import com.ryanair.flights.mapper.RouteMapper;
 import com.ryanair.flights.validator.RouteValidator;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class RouteService {
-    @Autowired
-    RouteClient routeClient;
-    @Autowired
-    RouteMapper routeMapper;
-    @Autowired
-    RouteValidator routeValidator;
+    private final RouteClient routeClient;
+    private final RouteMapper routeMapper;
+    private final RouteValidator routeValidator;
 
     public List<Route> fetchInterconnectedRoutes(String airportFrom, String airportTo) {
         List<Route> routes = routeMapper.mapToRoutes(routeClient.getRoutes());

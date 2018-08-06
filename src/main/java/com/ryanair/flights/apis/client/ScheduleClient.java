@@ -2,9 +2,9 @@ package com.ryanair.flights.apis.client;
 
 import com.ryanair.flights.config.SchedulesConfig;
 import com.ryanair.flights.domain.dto.ScheduleDto;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -17,12 +17,12 @@ import java.util.Map;
 import static java.util.Optional.ofNullable;
 
 @Component
+@RequiredArgsConstructor
 public class ScheduleClient {
     private static final Logger LOGGER = LoggerFactory.getLogger(ScheduleClient.class);
-    @Autowired
-    SchedulesConfig schedulesConfig;
-    @Autowired
-    RestTemplate restTemplate;
+
+    private final SchedulesConfig schedulesConfig;
+    private final RestTemplate restTemplate;
 
     public ScheduleDto getSchedules(String departure, String arrival, int year, int month) {
         URI url = getSchedulesUrl(departure, arrival, year, month);

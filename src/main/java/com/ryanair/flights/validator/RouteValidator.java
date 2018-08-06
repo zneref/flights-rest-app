@@ -23,8 +23,7 @@ public class RouteValidator {
                 .filter((anotherRoute -> route.getAirportTo().equalsIgnoreCase(anotherRoute.getAirportFrom())))
                 .count() == 1;
 
-        return prefilteredRoutes.stream()
-                .filter(directAndInterconnected)
+        return prefilteredRoutes.stream().filter(directAndInterconnected)
                 .map(route -> new Route(airportFrom, airportTo, route.getAirportTo()))
                 .collect(Collectors.toList());
     }
