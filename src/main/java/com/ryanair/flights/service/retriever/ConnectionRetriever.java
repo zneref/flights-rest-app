@@ -1,25 +1,25 @@
-package com.ryanair.flights.validator;
+package com.ryanair.flights.service.retriever;
 
 import com.ryanair.flights.domain.*;
 import com.ryanair.flights.service.RouteService;
 import com.ryanair.flights.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 @RequiredArgsConstructor
-public class ConnectionValidator {
+public class ConnectionRetriever {
     private final int HOUR_OFFSET = 2;
 
     private final RouteService routeService;
     private final ScheduleService scheduleService;
 
-    public List<Connection> validateDirect(String departure, String arrival,
+    public List<Connection> retrieveDirect(String departure, String arrival,
                                            LocalDateTime departureDateTime, LocalDateTime arrivalDateTime) {
         List<Connection> connections = new ArrayList<>();
         List<Route> routes = routeService.fetchDirectRoutes(departure, arrival);
@@ -36,7 +36,7 @@ public class ConnectionValidator {
         return connections;
     }
 
-    public List<Connection> validateInterconnected(String departure, String arrival,
+    public List<Connection> retrieveInterconnected(String departure, String arrival,
                                                    LocalDateTime departureDateTime, LocalDateTime arrivalDateTime) {
         List<Connection> connections = new ArrayList<>();
         List<Route> routes = routeService.fetchInterconnectedRoutes(departure, arrival);
@@ -68,7 +68,6 @@ public class ConnectionValidator {
                 }
             }
         }
-
         return connections;
     }
 

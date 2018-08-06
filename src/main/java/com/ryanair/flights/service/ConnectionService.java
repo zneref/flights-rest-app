@@ -3,7 +3,7 @@ package com.ryanair.flights.service;
 import com.ryanair.flights.domain.Connection;
 import com.ryanair.flights.domain.dto.ConnectionDto;
 import com.ryanair.flights.mapper.ConnectionMapper;
-import com.ryanair.flights.validator.ConnectionValidator;
+import com.ryanair.flights.service.retriever.ConnectionRetriever;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +15,14 @@ import java.util.stream.Stream;
 @Service
 @RequiredArgsConstructor
 public class ConnectionService {
-    private final ConnectionValidator connectionValidator;
+    private final ConnectionRetriever connectionRetriever;
     private final ConnectionMapper connectionMapper;
 
     public List<ConnectionDto> retrieveConnections(String departure, String arrival,
                                                    LocalDateTime departureDateTime, LocalDateTime arrivalDateTime) {
-        List<Connection> direct = connectionValidator.validateDirect(departure, arrival,
+        List<Connection> direct = connectionRetriever.retrieveDirect(departure, arrival,
                 departureDateTime, arrivalDateTime);
-        List<Connection> interconnected = connectionValidator.validateInterconnected(departure, arrival,
+        List<Connection> interconnected = connectionRetriever.retrieveInterconnected(departure, arrival,
                 departureDateTime, arrivalDateTime);
 
         List<Connection> connections = Stream.concat(direct.stream(), interconnected.stream())
