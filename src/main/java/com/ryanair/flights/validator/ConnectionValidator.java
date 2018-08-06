@@ -30,8 +30,8 @@ public class ConnectionValidator {
             List<Flight> flights = getFlights(departureDateTime, arrivalDateTime, schedule);
             List<ConnectionDetails> connectionDetailsList =
                     getConnectionDetailsList(route.getAirportFrom(), route.getAirportTo(), flights);
-            if (!connectionDetailsList.isEmpty())
-                connections.add(new Connection(0, connectionDetailsList));
+            connectionDetailsList.forEach(connectionDetails -> connections.add(new Connection(0,
+                    Arrays.asList(connectionDetails))));
         }
         return connections;
     }
