@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -14,6 +13,5 @@ import java.util.List;
 @NoArgsConstructor
 public class Schedule {
     private int month;
-    @NotNull
     private List<Day> days;
 }

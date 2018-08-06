@@ -28,8 +28,8 @@ public class ScheduleClient {
         URI url = getSchedulesUrl(departure, arrival, year, month);
 
         try {
-            ScheduleDto schedulesResponse = restTemplate.getForObject(url, ScheduleDto.class);
-            return ofNullable(schedulesResponse).orElse(new ScheduleDto());
+            ScheduleDto schedules = restTemplate.getForObject(url, ScheduleDto.class);
+            return ofNullable(schedules).orElse(new ScheduleDto());
 
         } catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);
@@ -48,5 +48,4 @@ public class ScheduleClient {
                 + "/{departure}/{arrival}/years/{year}/months/{month}")
                 .buildAndExpand(uriParams).toUri();
     }
-
 }

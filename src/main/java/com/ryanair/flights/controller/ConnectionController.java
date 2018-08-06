@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/flights")
+@RequestMapping("/v1")
 @CrossOrigin("*")
 @RequiredArgsConstructor
 public class ConnectionController {

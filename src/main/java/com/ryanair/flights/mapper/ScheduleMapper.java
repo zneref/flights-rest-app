@@ -4,7 +4,6 @@ import com.ryanair.flights.domain.Schedule;
 import com.ryanair.flights.domain.dto.ScheduleDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component

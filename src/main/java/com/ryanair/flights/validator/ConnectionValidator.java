@@ -73,22 +73,17 @@ public class ConnectionValidator {
     }
 
     private List<Flight> getFlights(LocalDateTime departureDateTime, LocalDateTime arrivalDateTime, Schedule schedule) {
-        List<Flight> flights = new ArrayList<>();
-        List<Day> days = schedule.getDays();
-        if (days != null) {
-            flights = days.stream()
-                    .flatMap(day -> day.getFlights().stream()
-                            .map(flight -> {
-                                        LocalDate flightDate = LocalDate.of(departureDateTime.getYear(), schedule.getMonth(), day.getDay());
-                                        return new Flight(flightDate, flight.getDepartureTime(), flight.getArrivalTime());
-                                    }
-                            ))
-                    .filter(flight -> flight.getDepartureDateTime().isAfter(departureDateTime)
-                            && flight.getArrivalDateTime().isBefore(arrivalDateTime))
-                    .sorted(Comparator.comparing(Flight::getDepartureDateTime))
-                    .collect(Collectors.toList());
-        }
-        return flights;
+        return schedule.getDays().stream()
+                .flatMap(day -> day.getFlights().stream()
+                        .map(flight -> {
+                                    LocalDate flightDate = LocalDate.of(departureDateTime.getYear(), schedule.getMonth(), day.getDay());
+                                    return new Flight(flightDate, flight.getDepartureTime(), flight.getArrivalTime());
+                                }
+                        ))
+                .filter(flight -> flight.getDepartureDateTime().isAfter(departureDateTime)
+                        && flight.getArrivalDateTime().isBefore(arrivalDateTime))
+                .sorted(Comparator.comparing(Flight::getDepartureDateTime))
+                .collect(Collectors.toList());
     }
 
     private List<ConnectionDetails> getConnectionDetailsList(String departure, String arrival, List<Flight> flights) {

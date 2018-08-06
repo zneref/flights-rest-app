@@ -28,8 +28,8 @@ public class RouteClient {
     public List<RouteDto> getRoutes() {
         URI url = UriComponentsBuilder.fromHttpUrl(routesConfig.getRoutesApiEndpoint()).build().encode().toUri();
         try {
-            RouteDto[] routesResponse = restTemplate.getForObject(url, RouteDto[].class);
-            return Arrays.asList(ofNullable(routesResponse).orElse(new RouteDto[0]));
+            RouteDto[] routes = restTemplate.getForObject(url, RouteDto[].class);
+            return Arrays.asList(ofNullable(routes).orElse(new RouteDto[0]));
         } catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);
             return new ArrayList<>();
