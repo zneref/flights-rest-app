@@ -19,11 +19,11 @@ public class RouteValidator {
         List<Route> prefilteredRoutes = routes.stream()
                 .filter(allFromOrTo).collect(Collectors.toList());
 
-        Predicate<Route> directAndInterconnected = route -> prefilteredRoutes.stream()
+        Predicate<Route> interconnected = route -> prefilteredRoutes.stream()
                 .filter((anotherRoute -> route.getAirportTo().equalsIgnoreCase(anotherRoute.getAirportFrom())))
                 .count() == 1;
 
-        return prefilteredRoutes.stream().filter(directAndInterconnected)
+        return prefilteredRoutes.stream().filter(interconnected)
                 .map(route -> new Route(airportFrom, airportTo, route.getAirportTo()))
                 .collect(Collectors.toList());
     }
