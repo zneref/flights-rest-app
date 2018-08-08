@@ -30,7 +30,7 @@ public class ConnectionController {
 
         if (!dateParametersValidator.isDateParametersValid(departureDateTime, arrivalDateTime))
             throw new ParamsNotValidException("Invalid dates parameters");
-        if(!iataParametersValidator.isIataParametersValid(departure, arrival))
+        if (!iataParametersValidator.isIataParametersValid(departure, arrival))
             throw new ParamsNotValidException("Invalid IATA code parameters");
 
         return connectionService.retrieveConnections(departure, arrival, departureDateTime, arrivalDateTime);

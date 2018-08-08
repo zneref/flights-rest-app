@@ -1,5 +1,6 @@
 package com.ryanair.flights.service.retriever;
 
+import com.ryanair.flights.config.ConnectionConfig;
 import com.ryanair.flights.domain.*;
 import com.ryanair.flights.service.RouteService;
 import com.ryanair.flights.service.ScheduleService;
@@ -14,8 +15,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ConnectionRetriever {
-    private final int HOUR_OFFSET = 2;
-
+    private final ConnectionConfig connectionConfig;
     private final RouteService routeService;
     private final ScheduleService scheduleService;
 
@@ -58,7 +58,7 @@ public class ConnectionRetriever {
             for (ConnectionDetails departureConnectionDetails : departureConnectionDetailsList) {
                 Optional<ConnectionDetails> arrivalConnectionDetails = arrivalConnectionDetailsList.stream()
                         .filter(connection -> connection.getDepartureDateTime()
-                                .isAfter(departureConnectionDetails.getArrivalDateTime().plusHours(HOUR_OFFSET)))
+                                .isAfter(departureConnectionDetails.getArrivalDateTime().plusHours(connectionConfig.getHourOffset())))
                         .findFirst();
 
                 if (arrivalConnectionDetails.isPresent()) {
