@@ -31,7 +31,7 @@ public class ConnectionRetriever {
             List<ConnectionDetails> connectionDetailsList =
                     getConnectionDetailsList(route.getAirportFrom(), route.getAirportTo(), flights);
             connectionDetailsList.forEach(connectionDetails -> connections.add(new Connection(0,
-                    Arrays.asList(connectionDetails))));
+                    Collections.singletonList(connectionDetails))));
         }
         return connections;
     }
