@@ -28,10 +28,13 @@ public class ConnectionController {
                                               @RequestParam("arrivalDateTime")
                                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) final LocalDateTime arrivalDateTime) {
 
-        if (!dateParametersValidator.isDateParametersValid(departureDateTime, arrivalDateTime))
+        if (!dateParametersValidator.isDateParametersValid(departureDateTime, arrivalDateTime)) {
             throw new ParamsNotValidException("Invalid dates parameters");
-        if (!iataParametersValidator.isIataParametersValid(departure, arrival))
+        }
+
+        if (!iataParametersValidator.isIataParametersValid(departure, arrival)) {
             throw new ParamsNotValidException("Invalid IATA code parameters");
+        }
 
         return connectionService.retrieveConnections(departure, arrival, departureDateTime, arrivalDateTime);
     }

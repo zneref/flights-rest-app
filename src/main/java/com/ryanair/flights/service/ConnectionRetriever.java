@@ -1,9 +1,8 @@
-package com.ryanair.flights.service.retriever;
+package com.ryanair.flights.service;
 
 import com.ryanair.flights.config.ConnectionConfig;
 import com.ryanair.flights.domain.*;
-import com.ryanair.flights.service.RouteService;
-import com.ryanair.flights.service.ScheduleService;
+import com.ryanair.flights.service.retriever.IConnectionRetriever;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ConnectionRetriever {
+public class ConnectionRetriever implements IConnectionRetriever {
     private final ConnectionConfig connectionConfig;
     private final RouteService routeService;
     private final ScheduleService scheduleService;
